@@ -10,9 +10,18 @@ router.get("/",async(req,res)=>{
  
 
 //posting the messages
-router.post('/message',async(req,res)=>{
+router.post('/addMessage',async(req,res)=>{
     try{
         await messagesConnection.create(req.body)
+    }
+    catch(e){
+        console.log(e)
+    }
+})
+//posting the messages
+router.delete('/removeMessage/:id',async(req,res)=>{
+    try{
+        await messagesConnection.findByIdAndDelete(req.params.id)
     }
     catch(e){
         console.log(e)
